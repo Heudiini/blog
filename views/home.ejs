@@ -1,0 +1,42 @@
+
+<%- include('./partials/header.ejs') %>
+<div class="container">
+
+
+<p><%= startingContent%></p>
+
+
+<% pilvi.forEach(function(element){ %>
+    
+     <h2><%= element.title    %></h2>
+      
+     <p> <%= element.content.substring(0,100)+" ..."%> <a href="/posts/<%=element.title %>">More</a>
+</p>
+
+
+<%});%>
+     
+
+
+    
+    
+      
+     
+
+<% posts.forEach(function(element){ %>
+    
+     <h2><%= element.title    %></h2>
+      
+     <p> <%= element.content.substring(0,100)+" ..."%> <a href="/posts/<%=element.title %>">More</a>
+</p>
+
+
+<%});%>
+        
+
+
+
+<%- include('./partials/footer.ejs') %>
+
+</div>
+</div>
