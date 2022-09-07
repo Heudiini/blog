@@ -10,7 +10,7 @@ var posts = [];
 const uri =
   "xxxxxxxx";
 
-const homeStartingContent = "";
+const homeStartingContent = "Updating blog page connected to cloud of your own";
 const aboutContent = "Hello world  ";
 
 const contactContent = "contact me";
