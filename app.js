@@ -5,23 +5,22 @@ const bodyParser = require("body-parser");
 const ejs = require("ejs");
 const mongoose = require("mongoose");
 var _ = require("lodash");
-var pilvi = [];
+
 var posts = [];
 const uri =
-  "mongodb+srv://heudiini:CttO2bvfdD1uwH2X@ekabase.i8d9uds.mongodb.net/?retryWrites=true&w=majority";
+  "xxxxxxxx";
 
 const homeStartingContent = "";
-const aboutContent =
-  "Hi all! I am very starter when it comes in programming. But as programmer I am sure you never ever going to feel as ready.  ";
+const aboutContent = "Hello world  ";
 
-const contactContent = "You are welcome to contact me:";
+const contactContent = "contact me";
 
 const app = express();
 var axios = require("axios");
 var data = JSON.stringify({
   collection: "events",
   database: "test",
-  dataSource: "ekaBase",
+  dataSource: "your database",
   projection: {
     title: 1,
     content: 1,
@@ -30,13 +29,13 @@ var data = JSON.stringify({
 
 var config = {
   method: "post",
-  url: "https://data.mongodb-api.com/app/data-bhpsp/endpoint/data/v1/action/find",
+  url: "xxxxxx",
 
   headers: {
     "Content-Type": "application/json",
     "Access-Control-Request-Headers": "*",
     "api-key":
-      "dUF4Z6DzBYra723v3dEsz69dQgohh96d6JITpULAP3EoMwEd5NP3jHSXtMDX2oXy",
+      "xxxxxxx",
   },
   data: data,
 };
@@ -45,17 +44,17 @@ axios(config)
   .then(function (response) {
     var x = response.data.documents;
     x.forEach((element) => {
-      var pilviData = {
+      var cloudData = {
         title: element.title,
         content: element.content,
       };
-      //console.log(pilviData);
-      posts.push(pilviData);
+      //console.log(cloudData);
+      posts.push(cloudData);
     });
-    //pilvi.push();
+   
   })
   .catch(function (error) {
-    console.log("not ended well with axios..");
+   
     console.log(error);
   });
 
@@ -68,16 +67,15 @@ var eventSchema = mongoose.Schema({
 
 var eventData = mongoose.model("Event", eventSchema);
 
-//Load index page using endpoint
+//Load home page using endpoint
 app.get("/", (req, res) => {
   return res.render("home", {
     startingContent: homeStartingContent,
     posts,
-    pilvi,
   });
 });
 
-/////// loppuu/////////////////
+
 app.set("view engine", "ejs");
 
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -93,13 +91,13 @@ app.get("/contact", function (req, res) {
   res.render("contact", { contactContent: contactContent });
 });
 
-/// compose page for admin
-app.get("/compose", function (req, res) {
-  res.render("compose");
+///
+app.get("/addPost", function (req, res) {
+  res.render("addPost");
 });
 
 // Creating a POST request
-app.post("/compose", function (req, res) {
+app.post("/addPost", function (req, res) {
   const post = {
     title: req.body.inputTitle,
     content: req.body.postBody,
